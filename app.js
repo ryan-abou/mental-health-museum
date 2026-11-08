@@ -82,7 +82,6 @@
       <div class="plinth" data-art="${a.art}">${ART[a.art]()}</div>
       <div class="placard">
         <h3 class="placard-title">${esc(a.title)}</h3>
-        <p class="placard-medium">${esc(a.medium)}</p>
         <p>${esc(a.label)}</p>
         <button class="closer-btn" aria-expanded="false" aria-controls="closer-${id}" data-ex="ex-${id}">Look closer</button>
         <p class="closer-text" id="closer-${id}" hidden>${esc(a.closer)}</p>
@@ -128,7 +127,6 @@
       <div class="theater">${screen}</div>
       <div class="placard">
         <h3 class="placard-title">The Video Theater</h3>
-        <p class="placard-medium">Public service announcement, under 2 minutes</p>
         <p>A short video about the big ideas of this museum: you're not alone, shame keeps people quiet, and help is out there.</p>
         <button class="closer-btn" aria-expanded="false" aria-controls="psa-script">Read the script</button>
         <div class="closer-text psa-script" id="psa-script" hidden>${script}<p class="psa-count">${words} words. That's about ${Math.round((words / 140) * 60)} seconds out loud.</p></div>
@@ -158,7 +156,6 @@
         </div>
         <div class="placard">
           <h3 class="placard-title">The Student Voices Wall</h3>
-          <p class="placard-medium">Interview notes on a corkboard</p>
           <p>Before we built anything, we interviewed a high school student. We asked about stress, mental health, and what would help. Her answers are pinned here.</p>
           <p class="placard-small">We left out her name to protect her privacy.</p>
         </div>

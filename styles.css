@@ -137,8 +137,7 @@ body.dark .plinth { background: radial-gradient(90% 75% at 50% 0%, #2b3765 0%, #
 
 .placard { max-width: var(--measure); }
 .placard p { margin: 0 0 .85rem; }
-.placard-title { font: 400 1.65rem/1.15 var(--serif); margin: 0 0 .15rem; }
-.placard-medium { font-style: italic; color: var(--soft); font-size: 1rem; }
+.placard-title { font: 400 1.65rem/1.15 var(--serif); margin: 0 0 .6rem; }
 .placard-small { font-size: .95rem; color: var(--soft); }
 .closer-btn {
   font: 700 1rem/1 var(--sans); color: var(--accent); background: none; cursor: pointer; border: 0;
