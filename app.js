@@ -88,8 +88,7 @@
         <p class="closer-text" id="closer-${id}" hidden>${esc(a.closer)}</p>
       </div>
       <aside class="from-book" aria-label="Evidence from the book">
-        <p class="from-book-head">From <cite>Turtles All the Way Down</cite></p>
-        ${b.quote ? `<blockquote><p>“${esc(b.quote)}”</p><footer>(${esc(b.cite)})</footer></blockquote>` : `<p class="from-book-scene">A key scene from the book</p>`}
+        ${b.quote ? `<blockquote><p>“${esc(b.quote)}”</p><footer><cite>Turtles All the Way Down</cite> (${esc(b.cite)})</footer></blockquote>` : `<p class="from-book-scene">A key scene from <cite>Turtles All the Way Down</cite></p>`}
         <p>${esc(b.note)}</p>
       </aside>
     </article>`;
@@ -107,7 +106,6 @@
 
   function roomHeader(r) {
     return `<header class="room-head">
-      <p class="room-kicker">${r.number ? `Room ${r.number} of 5` : r.id === "lobby" ? "Start here" : "Last stop"}, curated by ${esc(r.curator)}</p>
       <h2 class="room-title" tabindex="-1">${r.id === "book" ? `<cite>${esc(r.name)}</cite>` : esc(r.name)}</h2>
     </header>
     <div class="wall-text">${r.intro.map((p) => `<p>${p}</p>`).join("")}</div>`;
