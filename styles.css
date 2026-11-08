@@ -292,7 +292,7 @@ dialog#plan::backdrop { background: #04070fcc; }
 .closer .only-b { opacity: 1; }
 .closer .only-a { opacity: 0; }
 
-.crowd-fig { color: #b4abb7; transition: color .5s ease; }
+.crowd-fig { color: var(--g, #b4abb7); transition: color .5s ease; }
 .closer .crowd-fig { color: var(--c); }
 
 .mask-left, .mask-right, .mask-face { transition: transform .8s cubic-bezier(.3, .7, .2, 1), opacity .8s ease; transform-box: view-box; transform-origin: 200px 150px; }
