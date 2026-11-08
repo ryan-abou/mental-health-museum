@@ -6,6 +6,21 @@
   const order = rooms.map((r) => r.id);
   const main = document.getElementById("main");
   const live = document.getElementById("live");
+  const lum = (hex) => {
+    const c = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).map((x) => (x <= 0.03928 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4));
+    return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+  };
+  function spiralD(cx, cy, turns, r0, r1, steps) {
+    let d = "";
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps, a = t * turns * 2 * Math.PI - Math.PI / 2, rr = r0 + t * (r1 - r0);
+      d += (i ? "L" : "M") + (cx + rr * Math.cos(a)).toFixed(2) + " " + (cy + rr * Math.sin(a)).toFixed(2);
+    }
+    return d;
+  }
+  const brandD = spiralD(20, 20, 3.2, 1.2, 17, 160);
+  document.getElementById("brand-track").setAttribute("d", brandD);
+  document.getElementById("brand-progress").setAttribute("d", brandD);
   const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
   /* ----------------------------------------------------------- floor plan */
@@ -92,7 +107,7 @@
 
   function roomHeader(r) {
     return `<header class="room-head">
-      <p class="room-kicker">${r.number ? `Room ${r.number} of 5` : r.id === "lobby" ? "Start here" : "Last stop"} <span aria-hidden="true">/</span> Made by ${esc(r.curator)}</p>
+      <p class="room-kicker">${r.number ? `Room ${r.number} of 5` : r.id === "lobby" ? "Start here" : "Last stop"}, curated by ${esc(r.curator)}</p>
       <h2 class="room-title" tabindex="-1">${r.id === "book" ? `<cite>${esc(r.name)}</cite>` : esc(r.name)}</h2>
     </header>
     <div class="wall-text">${r.intro.map((p) => `<p>${p}</p>`).join("")}</div>`;
@@ -126,12 +141,12 @@
   function lobby(r) {
     return `<section class="hero">
         <svg class="hero-spiral" viewBox="0 0 200 200" aria-hidden="true"><path pathLength="1" d="${heroSpiral()}"/></svg>
-        <div>
+        <div class="hero-copy">
           <h1 class="hero-title">${esc(M.title)}</h1>
-          <p class="hero-sub">${esc(M.subtitle)}</p>
+          <p class="hero-sub">${esc(M.subtitle)}. Five rooms, from the dark toward the light.</p>
           <div class="hero-actions">
-            <a class="btn btn-solid" href="#/stigma" data-tour="1">Start the guided tour</a>
-            <button class="btn" data-open-plan>Open the floor plan</button>
+            <a class="btn btn-solid" href="#/stigma" data-tour="1">Start the tour</a>
+            <button class="btn-text" data-open-plan>See the floor plan</button>
           </div>
         </div>
       </section>
@@ -217,6 +232,12 @@
     root.style.setProperty("--ink", r.ink);
     root.style.setProperty("--accent", r.accent);
     document.body.classList.toggle("dark", !!r.dark);
+    document.body.classList.toggle("lit", lum(r.wall) > 0.3);
+    const tc = document.querySelector('meta[name="theme-color"]');
+    if (tc) tc.setAttribute("content", r.wall);
+    const step = order.indexOf(r.id) + 1;
+    document.getElementById("brand-progress").style.strokeDashoffset = String(1 - step / order.length);
+    document.querySelector(".brand").setAttribute("aria-label", `Turning Outward, stop ${step} of ${order.length}. Back to the lobby`);
     document.body.dataset.room = r.id;
     document.title = r.id === "lobby" ? `${M.title}: ${M.subtitle}` : `${r.name} · ${M.title}`;
 

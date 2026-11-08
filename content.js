@@ -15,9 +15,9 @@ window.MUSEUM = {
       short: "Lobby",
       name: "The Lobby",
       curator: "the whole team",
-      wall: "#dfe8e3",
-      ink: "#173a40",
-      accent: "#2f6f6a",
+      wall: "#0e1526",
+      ink: "#e2e6f0",
+      accent: "#9fb3e0",
       intro: [
         "Welcome! This museum is about one big idea: taking care of your mind is a human right. Every student should be able to get help without feeling ashamed, waiting a long time, or paying a lot.",
         "The lobby connects to five rooms. Each one shows a place where students struggle: stigma, social media, work, school, and the book <cite>Turtles All the Way Down</cite>. Take the tour, or use the map to explore."
@@ -51,9 +51,9 @@ window.MUSEUM = {
       short: "Stigma",
       name: "Mental Health Stigma",
       curator: "Hanrui Huang",
-      wall: "#e9e1ec",
-      ink: "#3b2541",
-      accent: "#7a4f86",
+      wall: "#171a37",
+      ink: "#e6e2f3",
+      accent: "#b6a6e3",
       intro: [
         "Stigma is when people think having a mental health problem means you're weak or broken. It's usually not loud. It's quiet: a mean joke, a changed subject, or a friend who says \"I'm fine\" when they're not.",
         "Stigma makes people hide. And when people hide, they don't get help."
@@ -95,9 +95,9 @@ window.MUSEUM = {
       short: "Social media",
       name: "Mental Health on Social Media",
       curator: "Ryan Abourjeili",
-      wall: "#dbe9f0",
-      ink: "#123344",
-      accent: "#23779a",
+      wall: "#212b57",
+      ink: "#e8ecf8",
+      accent: "#94c3ea",
       intro: [
         "Your phone is the first thing you see in the morning and the last thing you see at night. It keeps you close to friends. But it also shows you everyone's best moments, all day long.",
         "This room has two screens: your phone, and a mirror."
@@ -139,9 +139,9 @@ window.MUSEUM = {
       short: "Work",
       name: "Mental Health at Work",
       curator: "Nithil Arun",
-      wall: "#f1e7d0",
-      ink: "#3d2c0c",
-      accent: "#9a6a12",
+      wall: "#45325a",
+      ink: "#f6ecef",
+      accent: "#f4b894",
       intro: [
         "Lots of teens have jobs, sports, clubs, and homework. When every hour is full, rest starts to feel like something you have to earn.",
         "This room is about time: how much stress takes, and how much we get to keep."
@@ -183,9 +183,9 @@ window.MUSEUM = {
       short: "School",
       name: "Mental Health at School",
       curator: "Jewel McCallum",
-      wall: "#dfe8dd",
-      ink: "#18321f",
-      accent: "#3f6e4b",
+      wall: "#eac4aa",
+      ink: "#2c1820",
+      accent: "#86393a",
       intro: [
         "Students spend most of their day at school. That's where mental health problems show up the most, and where they get missed the most. Bullying follows kids home on their phones. A full cafeteria can still feel lonely.",
         "But school is also where help is closest: a counselor, a teacher, or a friend who saves you a seat."
@@ -227,9 +227,9 @@ window.MUSEUM = {
       short: "The book",
       name: "Turtles All the Way Down",
       curator: "the whole team",
-      wall: "#1d2747",
-      ink: "#eef0f8",
-      accent: "#e7c46a",
+      wall: "#f3dcaa",
+      ink: "#2a1d0c",
+      accent: "#874912",
       dark: true,
       intro: [
         "This book by John Green came out in 2017. It's about Aza Holmes, a 16-year-old with anxiety and OCD (obsessive-compulsive disorder). John Green has OCD, too.",
@@ -271,9 +271,9 @@ window.MUSEUM = {
       short: "Exit",
       name: "Before You Go",
       curator: "the whole team",
-      wall: "#dfe8e3",
-      ink: "#173a40",
-      accent: "#2f6f6a",
+      wall: "#e4eff6",
+      ink: "#10293b",
+      accent: "#1c5d8c",
       intro: [
         "You followed the spiral in. This is the way out, and it's the most important room."
       ],
