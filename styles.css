@@ -1,12 +1,17 @@
 /* Turning Outward: gallery styles.
    Each room repaints three variables: --wall (paint), --ink (text), --accent. */
+@font-face { font-family: "Young Serif"; src: url(fonts/young-serif-latin-400-normal.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Lexend"; src: url(fonts/lexend-latin-400-normal.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Lexend"; src: url(fonts/lexend-latin-700-normal.woff2) format("woff2"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Caveat"; src: url(fonts/caveat-latin-700-normal.woff2) format("woff2"); font-weight: 400 700; font-display: swap; }
+
 :root {
   --wall: #dfe8e3;
   --ink: #173a40;
   --accent: #2f6f6a;
   --paper: #fbfaf6;
   --serif: "Young Serif", Georgia, "Times New Roman", serif;
-  --sans: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --sans: "Lexend", system-ui, -apple-system, "Segoe UI", sans-serif;
   --hand: "Caveat", "Comic Sans MS", cursive;
   --measure: 64ch;
   color-scheme: light;
@@ -180,6 +185,16 @@ body.dark .closer-btn:hover, body.dark .closer-btn[aria-expanded="true"] { color
 .fp-key { text-align: center; font-size: .95rem; opacity: .85; display: flex; justify-content: center; align-items: center; gap: .5rem; flex-wrap: wrap; }
 .fp-key-line { display: inline-block; width: 36px; border-top: 3px dotted var(--accent); }
 
+.fp-list { display: none; list-style: none; margin: 0; padding: 0; }
+.fp-list a { display: flex; flex-direction: column; padding: .7rem .9rem; margin-bottom: .5rem; border-radius: 8px; text-decoration: none; background: var(--door); color: var(--door-ink); border: 2px solid var(--door-accent); font: 400 1.1rem/1.25 var(--serif); }
+.fp-list a span { font: 700 .8rem/1.3 var(--sans); }
+.fp-list em { font: italic 400 .85rem var(--sans); }
+@media (max-width: 560px) {
+  dialog#plan .floorplan, dialog#plan .fp-key { display: none; }
+  dialog#plan .fp-list { display: block; }
+  .plan-inline .fp-list { display: block; margin-top: 1rem; }
+  .plinth { padding: 2% 2% 5%; }
+}
 dialog#plan { width: min(860px, 94vw); border: 0; border-radius: 10px; padding: 1.25rem 1.5rem 1rem; background: var(--wall); color: var(--ink); box-shadow: 0 30px 80px -20px #000a; }
 dialog#plan::backdrop { background: #0b1a1dcc; }
 .plan-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: .5rem; }
@@ -230,6 +245,7 @@ dialog#plan::backdrop { background: #0b1a1dcc; }
 
 /* -------------------------------------------------------- artifact art */
 .art-small { font: 400 14px var(--sans); }
+.art-bold { font-weight: 700; }
 .art-tiny { font: 700 10.5px var(--sans); }
 .art-hand { font: 700 27px var(--hand); }
 .art-hand-sm { font: 700 19px var(--hand); }
@@ -253,7 +269,7 @@ dialog#plan::backdrop { background: #0b1a1dcc; }
 .mirror-glass { fill: #dcebf1; }
 .closer .mirror-glass { fill: #e9eef0; }
 
-.hand-min, .hand-hr { transform-box: view-box; transform-origin: 200px 150px; }
+.hand-min, .hand-hr { transform-box: view-box; transform-origin: 122px 150px; }
 .closer .hand-min { animation: spin 1.4s cubic-bezier(.5, 0, .2, 1); }
 .closer .hand-hr { animation: spin 1.4s cubic-bezier(.5, 0, .2, 1) reverse; }
 @keyframes spin { to { transform: rotate(720deg); } }

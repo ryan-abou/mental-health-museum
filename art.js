@@ -20,18 +20,23 @@
     return `M${cx} ${cy} L${x0.toFixed(1)} ${y0.toFixed(1)} A${r} ${r} 0 ${large} 1 ${x1.toFixed(1)} ${y1.toFixed(1)} Z`;
   }
 
-  function pie(cx, cy, r, parts, cls) {
+  function pie(cx, cy, r, parts) {
     let a = 0, out = "";
     parts.forEach((p) => {
       const span = (p.h / 24) * 360;
-      out += `<path class="${cls}" d="${arc(cx, cy, r, a, a + span)}" fill="${p.c}" stroke="#fffaf0" stroke-width="2"/>`;
-      const mid = ((a + span / 2 - 90) * Math.PI) / 180;
-      if (p.h >= 2) {
-        out += `<text class="${cls} art-small" x="${(cx + r * 0.62 * Math.cos(mid)).toFixed(1)}" y="${(cy + r * 0.62 * Math.sin(mid) + 4).toFixed(1)}" text-anchor="middle" fill="#2b1d05">${p.t}</text>`;
-      }
+      out += `<path d="${arc(cx, cy, r, a, a + span)}" fill="${p.c}" stroke="#fffaf0" stroke-width="2"/>`;
       a += span;
     });
     return out;
+  }
+
+  /* A color key next to the clock, so no label sits under the clock hands. */
+  function legend(x, y, parts) {
+    return parts.map((p, k) => `<g transform="translate(${x} ${y + k * 30})">
+      <rect width="18" height="18" rx="4" fill="${p.c}" stroke="#3d2c0c" stroke-width="1"/>
+      <text x="26" y="14" class="art-small" fill="#3d2c0c">${p.t}</text>
+      <text x="158" y="14" class="art-small art-bold" text-anchor="end" fill="#3d2c0c">${p.h}h</text>
+    </g>`).join("");
   }
 
   function spiralPath(cx, cy, turns, maxR) {
@@ -68,7 +73,7 @@
     },
 
     mask() {
-      const outer = ["I'm fine", "just tired", "it's whatever", "no, I'm good", "lol same"];
+      const outer = ["I'm fine", "just tired", "it's whatever", "lol same"];
       const inner = ["I can't stop thinking", "I'm scared", "I need help"];
       return `<svg ${V} aria-label="A white porcelain mask covered in phrases like I'm fine, with cracks revealing hidden words">
         <defs><clipPath id="maskclip"><path d="M200 30 C285 30 320 90 315 150 C310 220 260 275 200 278 C140 275 90 220 85 150 C80 90 115 30 200 30 Z"/></clipPath></defs>
@@ -85,10 +90,10 @@
           <path d="M140 128 Q160 112 180 128 Q160 140 140 128 Z" fill="#3b2541"/>
           <path d="M220 128 Q240 112 260 128 Q240 140 220 128 Z" fill="#3b2541"/>
           <path d="M165 212 Q200 232 235 212" fill="none" stroke="#3b2541" stroke-width="3" stroke-linecap="round"/>
-          <path d="M250 80 L262 104 L254 118 M120 190 L134 176 L130 160" fill="none" stroke="#3b2541" stroke-width="1.5"/>
+          <path d="M262 92 L274 112 L266 126" fill="none" stroke="#3b2541" stroke-width="1.5"/>
           ${outer.map((t, k) => {
-            const pos = [[152, 82], [258, 172], [142, 174], [206, 258], [244, 76]][k];
-            return `<text x="${pos[0]}" y="${pos[1]}" text-anchor="middle" class="art-hand-sm" fill="#7a4f86" transform="rotate(${[-8, 6, -4, 3, 10][k]} ${pos[0]} ${pos[1]})">${t}</text>`;
+            const pos = [[150, 84], [258, 172], [140, 176], [238, 248]][k];
+            return `<text x="${pos[0]}" y="${pos[1]}" text-anchor="middle" class="art-hand-sm" fill="#7a4f86" transform="rotate(${[-8, 6, -4, -6][k]} ${pos[0]} ${pos[1]})">${t}</text>`;
           }).join("")}
         </g>
       </svg>`;
@@ -102,7 +107,7 @@
         <rect x="136" y="26" width="128" height="250" rx="12" fill="#f4f8fa"/>
         <rect x="180" y="16" width="40" height="5" rx="2.5" fill="#2c5468"/>
         <g class="only-a">
-          <text x="144" y="44" class="art-tiny" fill="#123344">Screen time 7h 42m/day</text>
+          <text x="200" y="45" text-anchor="middle" class="art-tiny" fill="#123344">Screen time: 7h 42m</text>
           ${posts.map((p, k) => `<g transform="translate(144 ${54 + k * 72})">
             <rect width="112" height="62" rx="6" fill="${p[0]}"/>
             <text x="8" y="54" class="art-tiny" fill="#123344">${p[1]}</text>
@@ -110,7 +115,7 @@
           </g>`).join("")}
         </g>
         <g class="only-b">
-          <text x="144" y="46" class="art-tiny" fill="#123344">Searches at 2:14 AM</text>
+          <text x="200" y="45" text-anchor="middle" class="art-tiny" fill="#123344">Searches at 2:14 AM</text>
           ${searches.map((s, k) => `<g transform="translate(144 ${60 + k * 40})">
             <rect width="112" height="32" rx="6" fill="#e1ecf1"/>
             <circle cx="12" cy="16" r="5" fill="none" stroke="#23779a" stroke-width="2"/>
@@ -152,46 +157,52 @@
     },
 
     clock() {
-      const healthy = [{ h: 9, c: "#9fb6d6", t: "sleep" }, { h: 8, c: "#e2b65a", t: "school / work" }, { h: 3, c: "#a9cf9d", t: "friends" }, { h: 2, c: "#f0d9a8", t: "breaks" }, { h: 2, c: "#d9a5b3", t: "family" }];
-      const crunch = [{ h: 5, c: "#9fb6d6", t: "sleep" }, { h: 17, c: "#e2b65a", t: "work + homework" }, { h: 1, c: "#a9cf9d", t: "" }, { h: 1, c: "#f0d9a8", t: "" }];
-      return `<svg ${V} aria-label="A clock face divided into parts of the day, then overtaken by work">
-        <circle cx="200" cy="150" r="128" fill="#3d2c0c"/>
-        <circle cx="200" cy="150" r="120" fill="#fffaf0"/>
-        <g class="only-a">${pie(200, 150, 110, healthy, "")}</g>
-        <g class="only-b">${pie(200, 150, 110, crunch, "")}</g>
+      const c = { sleep: "#9fb6d6", work: "#e2b65a", friends: "#a9cf9d", breaks: "#f0d9a8", family: "#d9a5b3" };
+      const healthy = [{ h: 9, c: c.sleep, t: "Sleep" }, { h: 8, c: c.work, t: "School or work" }, { h: 3, c: c.friends, t: "Friends" }, { h: 2, c: c.family, t: "Family" }, { h: 2, c: c.breaks, t: "Breaks" }];
+      const crunch = [{ h: 5, c: c.sleep, t: "Sleep" }, { h: 17, c: c.work, t: "School or work" }, { h: 1, c: c.friends, t: "Friends" }, { h: 1, c: c.family, t: "Family" }, { h: 0, c: c.breaks, t: "Breaks" }];
+      const cx = 116, cy = 150;
+      return `<svg ${V} aria-label="A clock split into the parts of a day, with a color key. Looking closer, work takes over the day.">
+        <circle cx="${cx}" cy="${cy}" r="112" fill="#3d2c0c"/>
+        <circle cx="${cx}" cy="${cy}" r="104" fill="#fffaf0"/>
+        <g class="only-a">${pie(cx, cy, 96, healthy)}</g>
+        <g class="only-b">${pie(cx, cy, 96, crunch.filter((p) => p.h))}</g>
         ${Array.from({ length: 12 }, (_, k) => {
           const a = (k * 30 * Math.PI) / 180;
-          return `<line x1="${200 + 114 * Math.sin(a)}" y1="${150 - 114 * Math.cos(a)}" x2="${200 + 120 * Math.sin(a)}" y2="${150 - 120 * Math.cos(a)}" stroke="#3d2c0c" stroke-width="3"/>`;
+          return `<line x1="${(cx + 98 * Math.sin(a)).toFixed(1)}" y1="${(cy - 98 * Math.cos(a)).toFixed(1)}" x2="${(cx + 104 * Math.sin(a)).toFixed(1)}" y2="${(cy - 104 * Math.cos(a)).toFixed(1)}" stroke="#3d2c0c" stroke-width="3"/>`;
         }).join("")}
         <g class="clock-hands">
-          <line x1="200" y1="150" x2="200" y2="82" stroke="#3d2c0c" stroke-width="5" stroke-linecap="round" class="hand-min"/>
-          <line x1="200" y1="150" x2="246" y2="150" stroke="#3d2c0c" stroke-width="7" stroke-linecap="round" class="hand-hr"/>
-          <circle cx="200" cy="150" r="7" fill="#3d2c0c"/>
+          <line x1="${cx}" y1="${cy}" x2="${cx}" y2="${cy - 62}" stroke="#3d2c0c" stroke-width="5" stroke-linecap="round" class="hand-min"/>
+          <line x1="${cx}" y1="${cy}" x2="${cx + 40}" y2="${cy}" stroke="#3d2c0c" stroke-width="7" stroke-linecap="round" class="hand-hr"/>
+          <circle cx="${cx}" cy="${cy}" r="7" fill="#3d2c0c"/>
         </g>
+        <text x="236" y="62" class="art-small art-bold only-a" fill="#3d2c0c">A healthy day</text>
+        <text x="236" y="62" class="art-small art-bold only-b" fill="#3d2c0c">A crunch week</text>
+        <g class="only-a">${legend(236, 80, healthy)}</g>
+        <g class="only-b">${legend(236, 80, crunch)}</g>
       </svg>`;
     },
 
     poster() {
-      const tabs = ["988", "Text HOME to 741741", "Your counselor", "A trusted adult", "Take 10 min", "Log off tonight"];
+      const tabs = ["Call 988", "Text 741741", "Counselor", "An adult", "Take 10", "Log off"];
       return `<svg ${V} aria-label="A break room poster reading It's okay to clock out, with tear-off tabs">
         <rect x="88" y="12" width="224" height="276" fill="#fffaf0" stroke="#3d2c0c" stroke-width="2"/>
-        <rect x="88" y="12" width="224" height="88" fill="#9a6a12"/>
-        <text x="200" y="50" text-anchor="middle" class="art-poster" fill="#fffaf0">It's okay</text>
-        <text x="200" y="84" text-anchor="middle" class="art-poster" fill="#fffaf0">to clock out.</text>
-        <text x="110" y="128" class="art-small" fill="#3d2c0c">✓ Take your full break</text>
-        <text x="110" y="152" class="art-small" fill="#3d2c0c">✓ Eat away from your desk</text>
-        <text x="110" y="176" class="art-small" fill="#3d2c0c">✓ Ask for help early</text>
+        <rect x="88" y="12" width="224" height="96" fill="#9a6a12"/>
+        <text x="200" y="48" text-anchor="middle" class="art-poster" fill="#fffaf0">It's okay</text>
+        <text x="200" y="90" text-anchor="middle" class="art-poster" fill="#fffaf0">to clock out.</text>
+        <text x="110" y="132" class="art-small" fill="#3d2c0c">✓ Take your full break</text>
+        <text x="110" y="155" class="art-small" fill="#3d2c0c">✓ Eat away from your desk</text>
+        <text x="110" y="178" class="art-small" fill="#3d2c0c">✓ Ask for help early</text>
         <text x="110" y="200" class="art-small" fill="#3d2c0c">✓ Rest is part of the job</text>
         ${tabs.map((t, k) => `<g class="tab" style="transition-delay:${k * 70}ms" transform="translate(${92 + k * 36.3} 214)">
           <rect width="34" height="70" fill="#fdf1d6" stroke="#9a6a12" stroke-dasharray="3 2"/>
           <text class="only-a art-tiny" transform="translate(21 64) rotate(-90)" fill="#9a6a12">take one</text>
-          <foreignObject class="only-b" x="1" y="2" width="32" height="66"><div xmlns="http://www.w3.org/1999/xhtml" class="art-fo art-fo-tab">${t}</div></foreignObject>
+          <text class="only-b art-tiny" transform="translate(21 66) rotate(-90)" fill="#3d2c0c">${t}</text>
         </g>`).join("")}
       </svg>`;
     },
 
     chat() {
-      const bad = [["l", "lol who invited her"], ["l", "lmaooo"], ["l", "nobody even likes u"], ["r", "?? what did I do"], ["l", "screenshot this lol"]];
+      const bad = [["l", "lol who invited her"], ["l", "lmaooo"], ["l", "nobody even likes u"], ["r", "why tho??"], ["l", "screenshot this lol"]];
       const good = ["1. Screenshot it", "2. Block them", "3. Report it", "4. Tell an adult", "5. Check on them"];
       return `<svg ${V} aria-label="A group chat with hurtful messages, then steps to respond to cyberbullying">
         <rect x="40" y="200" width="320" height="100" fill="#8a6a46"/>

@@ -11,17 +11,17 @@
   /* ----------------------------------------------------------- floor plan */
   const PLAN = {
     lobby: { cx: 300, cy: 245 },
-    stigma: { x: 44, y: 212 },
-    social: { x: 104, y: 92 },
-    work: { x: 240, y: 30 },
-    school: { x: 376, y: 92 },
-    book: { x: 436, y: 212 },
+    stigma: { x: 26, y: 212 },
+    social: { x: 90, y: 92 },
+    work: { x: 232, y: 30 },
+    school: { x: 374, y: 92 },
+    book: { x: 438, y: 212 },
     exit: { x: 230, y: 360, w: 140, h: 44 }
   };
   function center(id) {
     const p = PLAN[id];
     if (id === "lobby") return [p.cx, p.cy];
-    return [p.x + (p.w || 120) / 2, p.y + (p.h || 70) / 2];
+    return [p.x + (p.w || 136) / 2, p.y + (p.h || 70) / 2];
   }
   function floorPlan(current) {
     const corridors = order.filter((id) => id !== "lobby").map((id) => {
@@ -30,9 +30,9 @@
     }).join("");
     const tourPts = order.map(center).map((p) => p.join(",")).join(" ");
     const boxes = order.filter((id) => id !== "lobby").map((id) => {
-      const r = byId[id], p = PLAN[id], w = p.w || 120, h = p.h || 70;
+      const r = byId[id], p = PLAN[id], w = p.w || 136, h = p.h || 70;
       const here = id === current;
-      return `<a href="#/${id}" class="fp-room${here ? " is-here" : ""}" aria-label="${esc(r.number ? `Gallery ${r.number}: ${r.name}` : r.name)}${here ? " (you are here)" : ""}">
+      return `<a href="#/${id}" class="fp-room${here ? " is-here" : ""}" aria-label="${esc(r.number ? `Room ${r.number}: ${r.name}` : r.name)}${here ? " (you are here)" : ""}">
         <rect x="${p.x}" y="${p.y}" width="${w}" height="${h}" rx="10" fill="${r.wall}" stroke="${r.accent}"/>
         ${r.number ? `<text x="${p.x + 12}" y="${p.y + 26}" class="fp-num" fill="${r.accent}">${r.number}</text>` : ""}
         <text x="${p.x + (r.number ? 30 : w / 2)}" y="${p.y + (r.number ? 26 : h / 2 + 5)}" class="fp-name" ${r.number ? "" : 'text-anchor="middle"'} fill="${r.ink}">${esc(r.short)}</text>
@@ -51,7 +51,12 @@
       ${boxes}
       ${current ? `<g class="fp-here" transform="translate(${hx} ${hy - (current === "lobby" ? 30 : 0)})"><circle r="9"/><circle r="16" class="fp-pulse"/></g>` : ""}
     </svg>
-    <p class="fp-key"><span class="fp-key-line"></span> The dotted line is the guided tour route. Select any room to go there.</p>`;
+    <p class="fp-key"><span class="fp-key-line"></span> The dotted line shows the tour path. Click any room to go there.</p>
+    <ol class="fp-list">${order.map((id) => {
+      const r = byId[id];
+      return `<li><a href="#/${id}" style="--door:${r.wall};--door-ink:${r.ink};--door-accent:${r.accent}"${id === current ? ' aria-current="page"' : ""}>
+        <span>${r.number ? `Room ${r.number}` : id === "lobby" ? "Start" : "End"}</span>${esc(r.name)}${id === current ? " <em>(you are here)</em>" : ""}</a></li>`;
+    }).join("")}</ol>`;
   }
 
   /* ------------------------------------------------------------- pieces */
@@ -67,9 +72,9 @@
         <button class="closer-btn" aria-expanded="false" aria-controls="closer-${id}" data-ex="ex-${id}">Look closer</button>
         <p class="closer-text" id="closer-${id}" hidden>${esc(a.closer)}</p>
       </div>
-      <aside class="from-book" aria-label="Evidence from the novel">
+      <aside class="from-book" aria-label="Evidence from the book">
         <p class="from-book-head">From <cite>Turtles All the Way Down</cite></p>
-        ${b.quote ? `<blockquote><p>“${esc(b.quote)}”</p><footer>(${esc(b.cite)})</footer></blockquote>` : `<p class="from-book-scene">Key scene (${esc(b.cite.replace("Green, ", ""))})</p>`}
+        ${b.quote ? `<blockquote><p>“${esc(b.quote)}”</p><footer>(${esc(b.cite)})</footer></blockquote>` : `<p class="from-book-scene">A key scene from the book</p>`}
         <p>${esc(b.note)}</p>
       </aside>
     </article>`;
@@ -87,7 +92,7 @@
 
   function roomHeader(r) {
     return `<header class="room-head">
-      <p class="room-kicker">${r.number ? `Gallery ${r.number} of 5` : r.id === "lobby" ? "Ground floor" : "Last stop"} <span aria-hidden="true">/</span> Curated by ${esc(r.curator)}</p>
+      <p class="room-kicker">${r.number ? `Room ${r.number} of 5` : r.id === "lobby" ? "Start here" : "Last stop"} <span aria-hidden="true">/</span> Made by ${esc(r.curator)}</p>
       <h2 class="room-title" tabindex="-1">${r.id === "book" ? `<cite>${esc(r.name)}</cite>` : esc(r.name)}</h2>
     </header>
     <div class="wall-text">${r.intro.map((p) => `<p>${p}</p>`).join("")}</div>`;
@@ -103,17 +108,17 @@
     }
     const screen = ytId
       ? `<iframe src="https://www.youtube-nocookie.com/embed/${ytId}" title="Public service announcement: the right to mental health" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>`
-      : `<div class="psa-empty"><p class="psa-empty-big">Now showing soon</p><p>Our two-minute public service announcement will play here.</p></div>`;
+      : `<div class="psa-empty"><p class="psa-empty-big">Coming soon</p><p>Our 2-minute video will play here.</p></div>`;
     const script = M.psaScript.map((s) => s.cue ? `<p class="cue">[${esc(s.cue)}]</p>` : `<p>${esc(s.line)}</p>`).join("");
     const words = M.psaScript.filter((s) => s.line).map((s) => s.line).join(" ").split(/\s+/).length;
     return `<article class="exhibit exhibit-wide">
       <div class="theater">${screen}</div>
       <div class="placard">
-        <h3 class="placard-title">The PSA Theater</h3>
-        <p class="placard-medium">Video, under two minutes</p>
-        <p>A short public service announcement that sums up the museum: you're not the only one struggling, stigma keeps people quiet, and help exists.</p>
+        <h3 class="placard-title">The Video Theater</h3>
+        <p class="placard-medium">Public service announcement, under 2 minutes</p>
+        <p>A short video about the big ideas of this museum: you're not alone, shame keeps people quiet, and help is out there.</p>
         <button class="closer-btn" aria-expanded="false" aria-controls="psa-script">Read the script</button>
-        <div class="closer-text psa-script" id="psa-script" hidden>${script}<p class="psa-count">${words} spoken words, about ${Math.round((words / 140) * 60)} seconds at 140 words per minute.</p></div>
+        <div class="closer-text psa-script" id="psa-script" hidden>${script}<p class="psa-count">${words} words. That's about ${Math.round((words / 140) * 60)} seconds out loud.</p></div>
       </div>
     </article>`;
   }
@@ -139,10 +144,10 @@
           ${r.voices.map((v, k) => `<figure class="note" style="--tilt:${[-2, 1.5, -1, 2, -1.5, 1, -2.5][k]}deg"><figcaption>${esc(v.q)}</figcaption><blockquote>“${esc(v.a)}”</blockquote></figure>`).join("")}
         </div>
         <div class="placard">
-          <h3 class="placard-title">The Visitor Voices Wall</h3>
-          <p class="placard-medium">Interview notes, pinned to cork</p>
-          <p>Before designing a single room, we interviewed a high school student about her mental health, the stress she sees around her, and what would actually help. Her words are pinned here, and she's quoted throughout the museum.</p>
-          <p class="placard-small">She asked to stay anonymous, so we refer to her as “the student we interviewed.”</p>
+          <h3 class="placard-title">The Student Voices Wall</h3>
+          <p class="placard-medium">Interview notes on a corkboard</p>
+          <p>Before we built anything, we interviewed a high school student. We asked about stress, mental health, and what would help. Her answers are pinned here.</p>
+          <p class="placard-small">We left out her name to protect her privacy.</p>
         </div>
       </article>
       <section class="pov">
@@ -169,7 +174,7 @@
     return `${roomHeader(r)}
       <div class="exit-grid">
         <section class="exit-card">
-          <h3>Signs someone may be struggling</h3>
+          <h3>Signs someone is struggling</h3>
           <ul>${r.signs.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>
         </section>
         <section class="exit-card">
@@ -178,18 +183,18 @@
         </section>
       </div>
       <section class="resources">
-        <h3>Where to get support</h3>
+        <h3>Where to get help</h3>
         <ul>${r.resources.map((x) => `<li><strong>${x.url ? `<a href="${x.url}" target="_blank" rel="noopener">${esc(x.name)}</a>` : esc(x.name)}</strong><span>${esc(x.how)}</span></li>`).join("")}</ul>
-        <p class="resources-note">If you or someone you know is in immediate danger, call 911.</p>
+        <p class="resources-note">If someone is in danger right now, call 911.</p>
       </section>
-      <p class="parting">Your now is not your forever.<span>— Aza's mother, in <cite>Turtles All the Way Down</cite> (Green 93)</span></p>
+      <p class="parting">Your now is not your forever.<span>— Aza's mom, in <cite>Turtles All the Way Down</cite> (Green 93)</span></p>
       <section class="credits">
         <h3>Made by</h3>
         <ul class="team">${M.team.map((t) => `<li><strong>${esc(t.name)}</strong><span>${esc(t.role)}</span></li>`).join("")}</ul>
         <p class="credits-course">${esc(M.course)}</p>
         <h3>Works cited</h3>
         <ol class="cited">${M.sources.map((s) => `<li>${s}</li>`).join("")}</ol>
-        <p class="placard-small">Quotations from the novel are cited by page number from the 2017 Dutton hardcover edition.</p>
+        <p class="placard-small">Book quotes use page numbers from the 2017 Dutton hardcover.</p>
       </section>`;
   }
 
@@ -220,7 +225,7 @@
     main.innerHTML = html;
     document.getElementById("plan-body").innerHTML = floorPlan(r.id);
     const pos = document.getElementById("where");
-    pos.textContent = r.number ? `Gallery ${r.number} of 5` : r.short;
+    pos.textContent = r.number ? `Room ${r.number} of 5` : r.short;
 
     wire();
     window.scrollTo(0, 0);
