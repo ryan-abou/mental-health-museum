@@ -226,7 +226,6 @@
     const id = (location.hash.replace(/^#\/?/, "") || "lobby").split("?")[0];
     const r = byId[id] || byId.lobby;
     current = r.id;
-    stopSpeech();
     const root = document.documentElement;
     root.style.setProperty("--wall", r.wall);
     root.style.setProperty("--ink", r.ink);
@@ -254,7 +253,6 @@
     if (h && !firstLoad) h.focus({ preventScroll: true });
     firstLoad = false;
     live.textContent = `You are in ${r.name}.`;
-    if (guideOn) speak(r.tour);
   }
   let firstLoad = true;
 
@@ -282,30 +280,6 @@
   dlg.addEventListener("click", (e) => {
     if (e.target === dlg) dlg.close();
     if (e.target.closest("a")) dlg.close();
-  });
-
-  /* -------------------------------------------------------- audio guide */
-  const guideBtn = document.getElementById("guide-btn");
-  const synth = window.speechSynthesis;
-  let guideOn = false;
-  function stopSpeech() { if (synth) synth.cancel(); }
-  function speak(text) {
-    if (!synth) return;
-    synth.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    u.rate = 0.98;
-    const v = synth.getVoices().find((x) => /en-US/i.test(x.lang) && /natural|samantha|aria|jenny|google us/i.test(x.name)) ||
-      synth.getVoices().find((x) => /^en/i.test(x.lang));
-    if (v) u.voice = v;
-    u.onend = () => { if (guideOn) guideBtn.dataset.state = "on"; };
-    synth.speak(u);
-  }
-  if (!synth) guideBtn.hidden = true;
-  guideBtn.addEventListener("click", () => {
-    guideOn = !guideOn;
-    guideBtn.setAttribute("aria-pressed", String(guideOn));
-    guideBtn.querySelector("span").textContent = guideOn ? "Audio guide on" : "Audio guide";
-    if (guideOn) speak(byId[current].tour); else stopSpeech();
   });
 
   /* ------------------------------------------------------ keyboard paging */
