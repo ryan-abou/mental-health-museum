@@ -250,14 +250,19 @@
           <path d="M200 136 C199 146 196 151 194 153 C198 156 203 156 206 153" stroke="#b47a5a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
           <path d="M188 164 Q200 172 212 164" fill="none" stroke="#9a4a3a" stroke-width="2.6" stroke-linecap="round"/>
           <g class="only-a">
-            <ellipse cx="200" cy="132" rx="38" ry="47" fill="#fff4f6" opacity=".35" filter="url(#mr-soft)"/>
-            <ellipse cx="178" cy="150" rx="9" ry="5" fill="#f59ab8" opacity=".55"/><ellipse cx="222" cy="150" rx="9" ry="5" fill="#f59ab8" opacity=".55"/>
-            <path d="M180 126 L176 122 M220 126 L224 122" stroke="#3b2a20" stroke-width="1.5"/>
+            <ellipse cx="200" cy="146" rx="33" ry="30" fill="#fff4f6" opacity=".45" filter="url(#mr-soft)"/>
+            <ellipse cx="186" cy="131" rx="8" ry="7.5" fill="#fff"/><ellipse cx="214" cy="131" rx="8" ry="7.5" fill="#fff"/>
+            <circle cx="186" cy="132" r="5.6" fill="#5a3a7a"/><circle cx="214" cy="132" r="5.6" fill="#5a3a7a"/>
+            <circle cx="184" cy="129.5" r="2.2" fill="#fff"/><circle cx="212" cy="129.5" r="2.2" fill="#fff"/>
+            <path d="M177 127 L173 123 M181 124 L179 119 M223 127 L227 123 M219 124 L221 119" stroke="#3b2a20" stroke-width="1.4"/>
+            <ellipse cx="177" cy="152" rx="9" ry="5" fill="#f59ab8" opacity=".6"/><ellipse cx="223" cy="152" rx="9" ry="5" fill="#f59ab8" opacity=".6"/>
+            <path d="M186 163 Q200 175 214 163" fill="#f2c4c4" stroke="#c45a6a" stroke-width="2.2" stroke-linecap="round"/>
             ${sparkle(140, 80, 1)}${sparkle(262, 108, 0.8)}${sparkle(136, 196, 0.7)}${sparkle(258, 210, 1.1)}${sparkle(230, 62, 0.6)}
           </g>
           <g class="only-b">
-            <path d="M179 140 Q186 144 193 140 M207 140 Q214 144 221 140" stroke="#a8775c" stroke-width="1.6" fill="none" opacity=".9"/>
-            <circle cx="176" cy="152" r="1.6" fill="#b06a52"/><circle cx="226" cy="156" r="1.4" fill="#b06a52"/><circle cx="210" cy="104" r="1.3" fill="#b06a52"/><circle cx="183" cy="160" r="1.1" fill="#b06a52"/>
+            <g fill="#b9785a" opacity=".45"><circle cx="180" cy="148" r="1.3"/><circle cx="185" cy="151" r="1.1"/><circle cx="176" cy="152" r="1"/><circle cx="220" cy="148" r="1.3"/><circle cx="215" cy="151" r="1.1"/><circle cx="224" cy="152" r="1"/><circle cx="198" cy="147" r=".9"/></g>
+            <path d="M176 128 Q178 131 180 131 M224 128 Q222 131 220 131" stroke="#b47a5a" stroke-width="1.2" fill="none" opacity=".7"/>
+            <path d="M186 162 Q200 174 214 162" fill="none" stroke="#9a4a3a" stroke-width="2.6" stroke-linecap="round"/>
           </g>
           <path d="M120 60 L180 30 L196 30 L130 70 Z M132 92 L214 40 L222 44 L138 98 Z" fill="#fff" opacity=".28"/>
         </g>

@@ -120,7 +120,7 @@ window.MUSEUM = {
           title: "The Perfect Mirror",
           medium: "Gold frame and filtered glass",
           label: "This mirror shows you with a beauty filter: smooth skin, perfect light, and sparkles. Look at it long enough, and your real face starts to feel wrong.",
-          closer: "Now the filter is off. No sparkles, no glow. Just the real you. The goal isn't to look like the filter. It's to stop comparing yourself to it.",
+          closer: "Now the filter is off. No sparkles, no glow, no giant eyes. Just a real face, and nothing on it needed fixing. The goal isn't to look like the filter. It's to stop comparing yourself to it.",
           book: {
             quote: "I was a story riddled with plot holes.",
             cite: "Green 253",
