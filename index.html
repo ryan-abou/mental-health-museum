@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Turning Outward: A museum of the right to mental health</title>
+  <meta name="description" content="A virtual museum about the right to mental health for middle and high school students, built around UN Sustainable Development Goal 3 and John Green's Turtles All the Way Down.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23173a40'/%3E%3Cpath d='M16 16m0 0a2 2 0 0 1 2 2a4 4 0 0 1-4 4a6 6 0 0 1-6-6a8 8 0 0 1 8-8a10 10 0 0 1 10 10' fill='none' stroke='%23e7c46a' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Young+Serif&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to the exhibit</a>
+  <header class="topbar">
+    <a class="brand" href="#/lobby" aria-label="Turning Outward, back to the lobby">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 16m0 0a2 2 0 0 1 2 2a4 4 0 0 1-4 4a6 6 0 0 1-6-6a8 8 0 0 1 8-8a10 10 0 0 1 10 10" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
+      <span>Turning Outward</span>
+    </a>
+    <span class="where" id="where" aria-hidden="true"></span>
+    <div class="tools">
+      <button class="tool" id="guide-btn" aria-pressed="false" title="Read each room aloud">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>Audio guide</span>
+      </button>
+      <button class="tool" id="plan-btn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z M9 3v15 M15 6v15" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        <span>Floor plan</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1"></main>
+  <p class="sr-only" id="live" aria-live="polite"></p>
+
+  <dialog id="plan" aria-labelledby="plan-title">
+    <div class="plan-head">
+      <h2 id="plan-title">Floor plan</h2>
+      <button id="plan-close" class="tool" aria-label="Close the floor plan">Close</button>
+    </div>
+    <div id="plan-body"></div>
+  </dialog>
+
+  <footer class="site-foot">
+    <p>Need to talk to someone now? Call or text <a href="https://988lifeline.org" target="_blank" rel="noopener">988</a>, any time. It's free.</p>
+    <p class="foot-small">A student project for AP Lang and Comp, Fall 2026. Use the arrow keys to move between rooms.</p>
+  </footer>
+
+  <script src="content.js"></script>
+  <script src="art.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
