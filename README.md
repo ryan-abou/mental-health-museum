@@ -1,6 +1,6 @@
 # Turning Outward
 
-A virtual museum of the right to mental health, made for AP Lang and Comp (Dr. Gingrich, Fall 2026).
+A virtual museum of the right to mental health, made for AP Lang and Comp (Dr. Gingrich, November 2026).
 
 **Visit:** https://ryan-abou.github.io/mental-health-museum/
 
