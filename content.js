@@ -1,7 +1,7 @@
 /* All museum text lives here so the group can edit it without touching the layout code.
    To add the finished PSA video, paste its YouTube link between the quotes below
    (e.g. "https://www.youtube.com/watch?v=XXXXXXXXXXX"). */
-window.PSA_VIDEO_URL = "";
+window.PSA_VIDEO_URL = "https://youtu.be/E6aJMD6QwHg";
 
 window.MUSEUM = {
   title: "Turning Outward",
