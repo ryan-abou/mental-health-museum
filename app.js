@@ -126,7 +126,7 @@
         <div class="psa-script">${script}</div>
       </article>`;
     }
-    return `<article class="exhibit">
+    return `<article class="exhibit exhibit-wide psa-video">
       <div class="theater">${screen}</div>
       <div class="placard">
         <h3 class="placard-title">Our PSA</h3>
