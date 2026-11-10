@@ -19,27 +19,20 @@ window.MUSEUM = {
       ink: "#e2e6f0",
       accent: "#9fb3e0",
       intro: [
-        "Welcome! This museum is about one big idea: taking care of your mind is a human right. Every student should be able to get help without feeling ashamed, waiting a long time, or paying a lot.",
-        "The lobby connects to five rooms. Each one shows a place where students struggle: stigma, social media, work, school, and the book <cite>Turtles All the Way Down</cite>. Take the tour, or use the map to explore."
+        "We think getting help for your mental health should be treated as a human right. Article 25 of the Universal Declaration of Human Rights says everyone has a right to medical care, and UN Goal 3.4 asks countries to promote mental health and well-being by 2030. Neither one means much if a student can't get help without paying a lot, waiting months, or feeling embarrassed to ask.",
+        "We made this museum for middle and high school students, especially anyone stressed about APs or college. There are five rooms: stigma, social media, work, school, and the book <cite>Turtles All the Way Down</cite>. If you only remember one thing, make it the exit room: the signs that someone is struggling and where to get help."
       ],
-      facts: [
-        { label: "Our human right", text: "Everyone has the right to good health, and that includes mental health. Article 25 of the Universal Declaration of Human Rights says everyone deserves medical care." },
-        { label: "Our global goal", text: "UN Goal 3 is Good Health and Well-Being. Part 3.4 asks every country to support mental health by 2030." },
-        { label: "Why it matters now", text: "Lots of students feel stressed about school and the future. Many don't ask for help because they feel embarrassed or don't know where to go." },
-        { label: "Who it's for", text: "Middle and high school students, especially anyone stressed about hard classes or college." },
-        { label: "What we want you to do", text: "Learn the signs that someone is struggling. Stand up to shame about mental health. Use the help around you." },
-        { label: "How to visit", text: "The museum is online and free. It works on a phone, a Chromebook, or a school computer." }
-      ],
+      facts: [],
       pov: "A student we talked to needs mental health help that is easy to get. School stress, hard classes, and worry about the future affect her grades, her friendships, and how she feels.",
       hmw: "How might we build a museum that shows students like her where to find help and makes it feel okay to ask?",
       voices: [
-        { q: "What does mental health mean to you?", a: "Honestly, just feeling okay in your own head. Like you can have a bad day and not spiral about it." },
-        { q: "Do schools pay enough attention to it?", a: "Nah, not really. [My school] puts up some posters and calls it a day." },
-        { q: "How does it affect your day?", a: "When I'm in a good place, a bad grade is like, okay, whatever, I'll fix it. When I'm not, it feels like the end of the world." },
-        { q: "What helps most when you're overwhelmed?", a: "Someone just listening without trying to fix it right away." },
-        { q: "Should mental health care be a human right?", a: "Yeah. Whether you can get help shouldn't depend on how much money your family has." },
-        { q: "What gets in the way?", a: "Money is the biggest one. Waitlists are super long too. And for teens, you usually need a parent to approve it or drive you." },
-        { q: "What could schools do better?", a: "Hire more counselors, and ones who actually have time for students. And just make it normal to ask for help." }
+        { q: "What does mental well-being mean to you?", a: "Honestly, just feeling okay in your own head. Like you can have a bad day and not spiral about it." },
+        { q: "Do you think mental health receives enough attention in schools and communities?", a: "Nah, not really. [My school] specifically puts up some posters and call it a day." },
+        { q: "How does good mental health affect a person's daily life?", a: "It changes pretty much everything. Sleep, how you treat people, whether you even feel like doing your work. When I'm in a good place, a bad grade is like, okay, whatever, I'll fix it. When I'm not, it feels like the end of the world." },
+        { q: "Have you ever felt that your mental health affected your performance at school, work, or in relationships?", a: "Yeah, for sure. When I'm stressed I procrastinate more, which makes me more stressed, so it just loops. I've also snapped at people when I was overwhelmed even though it wasn't their fault." },
+        { q: "What kinds of support have been most helpful when you're feeling overwhelmed?", a: "Someone just listening without trying to fix it right away." },
+        { q: "What barriers might prevent people from getting mental health support?", a: "Money is the biggest one, since therapy is expensive and insurance is confusing. Waitlists are super long too. And for teens, you usually need a parent to approve it or drive you, which can be a problem." },
+        { q: "What could schools or communities do to better support mental well-being?", a: "[My school] could hire more counselors, and ones who actually have time for students. Less crazy workloads would help too. And just making it normal to ask for help, like not weird at all, would be very helpful." }
       ],
       tour: "Welcome to Turning Outward, a museum about the right to mental health. On the left is our short video. On the right are notes from a student we interviewed. Her answers shaped every room. When you're ready, go through the first door to the room about stigma."
     },
@@ -55,8 +48,8 @@ window.MUSEUM = {
       ink: "#e6e2f3",
       accent: "#b6a6e3",
       intro: [
-        "Stigma is when people think having a mental health problem means you're weak or broken. It's usually not loud. It's quiet: a mean joke, a changed subject, or a friend who says \"I'm fine\" when they're not.",
-        "Stigma makes people hide. And when people hide, they don't get help."
+        "Stigma is when people think having a mental health problem means you're weak or broken. Most of the time it's quiet, like a joke at someone's expense, a subject that gets changed fast, or a friend who says \"I'm fine\" when they're not.",
+        "People who feel that stigma usually hide what they're going through, so nobody knows to help them."
       ],
       artifacts: [
         {
@@ -99,20 +92,20 @@ window.MUSEUM = {
       ink: "#e8ecf8",
       accent: "#94c3ea",
       intro: [
-        "Your phone is the first thing you see in the morning and the last thing you see at night. It keeps you close to friends. But it also shows you everyone's best moments, all day long.",
-        "This room has two screens: your phone, and a mirror."
+        "For a lot of us, the phone is the first thing we check in the morning and the last thing at night. It keeps us close to friends, and it also shows us everyone's best moments all day long.",
+        "This room has a phone and a mirror."
       ],
       artifacts: [
         {
           art: "phone",
           title: "A Teen's Phone",
           medium: "Phone and search history",
-          label: "The feed is full of perfect trips, perfect grades, and perfect friends. Screen time: almost 8 hours a day. It's easy to compare your whole life to someone else's best moments.",
-          closer: "Now look at the searches from 2 a.m. These are questions people ask the internet because they're scared to ask a person. The internet always answers, but it can't really help.",
+          label: "The feed is beach trips and straight A's, and the screen time says almost 8 hours today. It's easy to compare your whole life to someone else's highlights.",
+          closer: "Now look at the searches from 2 a.m. These are questions people ask the internet because they're scared to ask a person. The internet has an answer for every one of them, and none of those answers come from someone who knows her.",
           book: {
             quote: "True terror isn't being scared; it's not having a choice in the matter.",
             cite: "Green 22",
-            note: "Aza worries that she has a dangerous infection. She reads about it online over and over. Every search makes her more scared, not less."
+            note: "Aza worries that she has a dangerous infection. She reads about it online over and over. Every search makes her more scared."
           }
         },
         {
@@ -120,11 +113,11 @@ window.MUSEUM = {
           title: "The Perfect Mirror",
           medium: "Gold frame and filtered glass",
           label: "This mirror shows you with a beauty filter: smooth skin, perfect light, and sparkles. Look at it long enough, and your real face starts to feel wrong.",
-          closer: "Now the filter is off. No sparkles, no glow, no giant eyes. Just a real face, and nothing on it needed fixing. The goal isn't to look like the filter. It's to stop comparing yourself to it.",
+          closer: "With the filter off, the eyes are normal size and the sparkles are gone. Nothing about this face needed fixing. The problem was comparing it to the filtered one in the first place.",
           book: {
             quote: "I was a story riddled with plot holes.",
             cite: "Green 253",
-            note: "Aza feels like she is full of flaws. Social media makes everyone else look perfect. But everyone has flaws. Aza starts to get better when she stops hiding hers."
+            note: "Aza feels like she is full of flaws. Social media makes everyone else look like they have none. Aza starts to get better once she stops hiding hers."
           }
         }
       ],
@@ -144,15 +137,15 @@ window.MUSEUM = {
       accent: "#f4b894",
       intro: [
         "Lots of teens have jobs, sports, clubs, and homework. When every hour is full, rest starts to feel like something you have to earn.",
-        "This room is about time: how much stress takes, and how much we get to keep."
+        "This room looks at where the hours in a day actually go."
       ],
       artifacts: [
         {
           art: "clock",
           title: "The Balance Clock",
           medium: "Clock that shows one day",
-          label: "This clock shows a healthy day. There's time for sleep, school or work, friends, family, and real breaks.",
-          closer: "This is the same day during a busy week. Work and homework take over. Breaks, friends, and sleep shrink. There's no time left to rest.",
+          label: "This clock shows a healthy day, with time for sleep, school, friends, family, and breaks.",
+          closer: "This is the same day during a busy week. Work and homework take over the clock, and sleep gets squeezed to five hours.",
           book: {
             quote: "I was so good at being a kid, and so terrible at being whatever I was now.",
             cite: "Green 25",
@@ -163,16 +156,16 @@ window.MUSEUM = {
           art: "poster",
           title: "The Break Room Poster",
           medium: "Poster with tear-off tabs",
-          label: "This poster says \"It's okay to clock out.\" Taking a break isn't lazy. Rest helps you do better work.",
-          closer: "Each tab has a real way to get help. The student we interviewed said a poster alone isn't enough. But a poster that points to real help is a good start.",
+          label: "This poster says \"It's okay to clock out.\" Breaks are part of doing the work well, and most people need permission to take them.",
+          closer: "Each tab has a real way to get help. The student we interviewed said her school \"puts up some posters and call it a day,\" so we wanted a poster you could actually take something from.",
           book: {
             quote: "Life is a series of choices between wonders.",
             cite: "Green 188",
-            note: "Davis writes this on his blog. Taking a break is a choice, too. Choosing rest or fun doesn't mean you're falling behind."
+            note: "Davis writes this on his blog. Taking a break is one of those choices, and it's an allowed one."
           }
         }
       ],
-      connect: "When we asked a student what would help, she said smaller workloads. Supporting mental health (Goal 3.4) means building real breaks into the day, not just hanging up posters.",
+      connect: "When we asked a student what would help, she said smaller workloads. Supporting mental health (Goal 3.4) means building real breaks into the day.",
       tour: "This is the room about work, made by Nithil Arun. First, the balance clock shows a healthy day. Press Look closer to see a busy week, when work takes over everything. In the book, Daisy works long shifts and worries about money for college. Next is a poster that says it's okay to clock out. Its tabs point to real help. Go through the next door to the room about school."
     },
 
@@ -187,16 +180,16 @@ window.MUSEUM = {
       ink: "#2c1820",
       accent: "#86393a",
       intro: [
-        "Students spend most of their day at school. That's where mental health problems show up the most, and where they get missed the most. Bullying follows kids home on their phones. A full cafeteria can still feel lonely.",
-        "But school is also where help is closest: a counselor, a teacher, or a friend who saves you a seat."
+        "Students spend most of their day at school, so it's where a lot of mental health problems show up, and also where they get missed. Bullying follows kids home on their phones, and a full cafeteria can still feel lonely.",
+        "School is also where help is closest, whether that's a counselor or a friend who saves you a seat."
       ],
       artifacts: [
         {
           art: "chat",
           title: "The Phone Under the Desk",
           medium: "Group chat",
-          label: "A group chat during class. The jokes are fast, and they're all aimed at one person. Online bullying doesn't stop when school ends. It follows you home.",
-          closer: "Here's what to do: take a screenshot, block them, report it, and tell an adult you trust. If it's happening to a friend, message them. One kind message can change their whole night.",
+          label: "A group chat during class. The jokes are fast, and they're all aimed at one person. Online bullying keeps going after school ends.",
+          closer: "If it's happening to you, screenshot it, block them, report it, and tell an adult you trust. If it's happening to a friend, message them that night.",
           book: {
             quote: null,
             cite: "Green, key scene",
@@ -233,7 +226,7 @@ window.MUSEUM = {
       dark: true,
       intro: [
         "This book by John Green came out in 2017. It's about Aza Holmes, a 16-year-old with anxiety and OCD (obsessive-compulsive disorder). John Green has OCD, too.",
-        "Aza has a therapist and a mom who loves her. Many teens don't. The book shows what good care looks like, and why everyone should have it."
+        "Aza has a therapist and a mom who loves her, which many teens don't. Her story shows what good care looks like."
       ],
       artifacts: [
         {
@@ -241,11 +234,11 @@ window.MUSEUM = {
           title: "The Spiral",
           medium: "Wire sculpture",
           label: "Aza says her thoughts are like a spiral. One worry circles tighter and tighter until it's all she can think about.",
-          closer: "But spirals go both ways. Follow this one out, and it gets wider: a friend, a parent, a therapist, writing things down. That's how this museum got its name, Turning Outward.",
+          closer: "Follow this spiral outward instead and it gets wider, toward a friend, a parent, a therapist, and writing things down. That's where the museum's name comes from.",
           book: {
             quote: "The thing about a spiral is, if you follow it inward, it never actually ends.",
             cite: "Green 7",
-            note: "Aza can't just stop thinking about her worries. That's why mental illness needs real treatment, not just trying harder."
+            note: "Aza can't decide to stop thinking about her worries, which is why she needs actual treatment."
           }
         },
         {
@@ -275,7 +268,7 @@ window.MUSEUM = {
       ink: "#10293b",
       accent: "#1c5d8c",
       intro: [
-        "You followed the spiral in. This is the way out, and it's the most important room."
+        "Before you leave, here are the signs to watch for and where to get help."
       ],
       signs: [
         "Sleeping a lot more or a lot less",

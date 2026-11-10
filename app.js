@@ -43,7 +43,6 @@
       const [x, y] = center(id);
       return `<line x1="300" y1="245" x2="${x}" y2="${y}" class="fp-corridor"/>`;
     }).join("");
-    const tourPts = order.map(center).map((p) => p.join(",")).join(" ");
     const boxes = order.filter((id) => id !== "lobby").map((id) => {
       const r = byId[id], p = PLAN[id], w = p.w || 136, h = p.h || 70;
       const here = id === current;
@@ -58,15 +57,14 @@
     const [hx, hy] = center(current || "lobby");
     return `<svg class="floorplan" viewBox="0 0 600 420" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Floor plan of the museum">
       ${corridors}
-      <polyline points="${tourPts}" class="fp-tour"/>
       <a href="#/lobby" class="fp-room${here ? " is-here" : ""}" aria-label="The Lobby${here ? " (you are here)" : ""}">
         <circle cx="${L.cx}" cy="${L.cy}" r="64" fill="${lob.wall}" stroke="${lob.accent}"/>
         <text x="${L.cx}" y="${L.cy + 6}" text-anchor="middle" class="fp-name" fill="${lob.ink}">Lobby</text>
       </a>
       ${boxes}
-      ${current ? `<g class="fp-here" transform="translate(${hx} ${hy - (current === "lobby" ? 30 : 0)})"><circle r="9"/><circle r="16" class="fp-pulse"/></g>` : ""}
+      ${current ? `<g class="fp-here" transform="translate(${hx} ${hy - (current === "lobby" ? 30 : 0)})"><circle r="8"/></g>` : ""}
     </svg>
-    <p class="fp-key"><span class="fp-key-line"></span> The dotted line shows the tour path. Click any room to go there.</p>
+    <p class="fp-key">Click a room to go there.</p>
     <ol class="fp-list">${order.map((id) => {
       const r = byId[id];
       return `<li><a href="#/${id}" style="--door:${r.wall};--door-ink:${r.ink};--door-accent:${r.accent}"${id === current ? ' aria-current="page"' : ""}>
@@ -118,18 +116,23 @@
       const m = url.match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/);
       ytId = m && m[1];
     }
-    const screen = ytId
-      ? `<iframe src="https://www.youtube-nocookie.com/embed/${ytId}" title="Public service announcement: the right to mental health" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>`
-      : `<div class="psa-empty"><p class="psa-empty-big">Coming soon</p><p>Our 2-minute video will play here.</p></div>`;
+    const screen = ytId && `<iframe src="https://www.youtube-nocookie.com/embed/${ytId}" title="Public service announcement: the right to mental health" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
     const script = M.psaScript.map((s) => s.cue ? `<p class="cue">[${esc(s.cue)}]</p>` : `<p>${esc(s.line)}</p>`).join("");
     const words = M.psaScript.filter((s) => s.line).map((s) => s.line).join(" ").split(/\s+/).length;
-    return `<article class="exhibit exhibit-wide">
+    if (!screen) {
+      return `<article class="psa-text">
+        <h3 class="placard-title">Our PSA script</h3>
+        <p>This is the script for our public service announcement, about ${Math.round((words / 140) * 60)} seconds read aloud.</p>
+        <div class="psa-script">${script}</div>
+      </article>`;
+    }
+    return `<article class="exhibit">
       <div class="theater">${screen}</div>
       <div class="placard">
-        <h3 class="placard-title">The Video Theater</h3>
-        <p>A short video about the big ideas of this museum: you're not alone, shame keeps people quiet, and help is out there.</p>
+        <h3 class="placard-title">Our PSA</h3>
+        <p>Our public service announcement, about two minutes long.</p>
         <button class="closer-btn" aria-expanded="false" aria-controls="psa-script">Read the script</button>
-        <div class="closer-text psa-script" id="psa-script" hidden>${script}<p class="psa-count">${words} words. That's about ${Math.round((words / 140) * 60)} seconds out loud.</p></div>
+        <div class="closer-text psa-script" id="psa-script" hidden>${script}</div>
       </div>
     </article>`;
   }
@@ -139,15 +142,12 @@
         <svg class="hero-spiral" viewBox="0 0 200 200" aria-hidden="true"><path pathLength="1" d="${heroSpiral()}"/></svg>
         <div class="hero-copy">
           <h1 class="hero-title">${esc(M.title)}</h1>
-          <p class="hero-sub">${esc(M.subtitle)}. Five rooms, from the dark toward the light.</p>
-          <div class="hero-actions">
-            <a class="btn btn-solid" href="#/stigma" data-tour="1">Start the tour</a>
-            <button class="btn-text" data-open-plan>See the floor plan</button>
-          </div>
+          <p class="hero-sub">${esc(M.subtitle)}.</p>
+          <p class="hero-start"><a href="#/stigma">Start in Room 1, Mental Health Stigma</a></p>
         </div>
       </section>
       ${roomHeader(r)}
-      <dl class="facts">${r.facts.map((f) => `<div><dt>${esc(f.label)}</dt><dd>${esc(f.text)}</dd></div>`).join("")}</dl>
+      ${r.facts.length ? `<dl class="facts">${r.facts.map((f) => `<div><dt>${esc(f.label)}</dt><dd>${esc(f.text)}</dd></div>`).join("")}</dl>` : ""}
       <h3 class="section-title">In the lobby</h3>
       ${psaBlock()}
       <article class="exhibit exhibit-wide">
@@ -204,7 +204,6 @@
         <p class="credits-course">${esc(M.course)}</p>
         <h3>Works cited</h3>
         <ol class="cited">${M.sources.map((s) => `<li>${s}</li>`).join("")}</ol>
-        <p class="placard-small">Book quotes use page numbers from the 2017 Dutton hardcover.</p>
       </section>`;
   }
 
