@@ -122,7 +122,7 @@
     if (!screen) {
       return `<article class="psa-text">
         <h3 class="placard-title">Our PSA script</h3>
-        <p>This is the script for our public service announcement, about ${Math.floor(((words / 140) * 60) / 60)}:${String(Math.round((words / 140) * 60) % 60).padStart(2, "0")} read aloud.</p>
+        <p>This is the script for our public service announcement, about two minutes read aloud.</p>
         <div class="psa-script">${script}</div>
       </article>`;
     }
